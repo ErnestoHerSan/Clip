@@ -1,0 +1,40 @@
+package com.clip.apiTest;
+
+import java.util.logging.Logger;
+
+import org.json.JSONObject;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class TestAddUser {
+
+	Logger Log = Logger.getLogger("TestGetList");
+	String url="https://clip-automation-practice.free.beeceptor.com/addUser";
+
+	@Test
+	public void postAddUser() {
+		RestAssured.baseURI = url;
+		RequestSpecification request = RestAssured.given();
+
+		JSONObject requestParams = new JSONObject();
+		requestParams.put("status", 100); 
+		requestParams.put("message", "User addded");
+
+		request.header("Content-Type", "application/json");
+		
+		request.body(requestParams.toString());
+		
+		Response response = request.post("/register");
+		
+		int statusCode = response.getStatusCode();
+		 Assert.assertEquals(statusCode, "100");
+
+	}
+
+}

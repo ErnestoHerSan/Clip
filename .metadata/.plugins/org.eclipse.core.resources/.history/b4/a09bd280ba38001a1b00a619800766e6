@@ -1,0 +1,27 @@
+package com.clip.main;
+
+import java.io.File;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SuiteAllTest {
+
+	ChromeDriver driver = new ChromeDriver();
+	
+	@BeforeClass
+	public static void setUp() {
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + File.separator + "driver" + File.separator + "chromedriver");
+	} 
+	
+	@Test
+	public void prueba() {
+		 driver.get("http:\\yahoo.com");
+		 driver.manage().window().maximize();
+	}
+	
+}

@@ -1,0 +1,25 @@
+package com.clip.apiTest;
+
+import org.junit.Test;
+
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class TestGetList {
+
+	@Test 
+	public void nuevaLlamada() {
+		System.out.println("");
+		RestAssured.baseURI = "http://172.16.130.31/cad-w";
+		RequestSpecification httpRequest = RestAssured.given();
+		Response response = httpRequest.get("/066/rest/emergencia/llamadasEntrantes/nuevaLlamada");
+		int statusCode = response.getStatusCode();
+		Assert.assertEquals(405, statusCode);
+	}
+
+}

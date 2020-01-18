@@ -1,0 +1,37 @@
+package com.clip.apiTest;
+
+import java.util.logging.Logger;
+
+import org.junit.Test;
+
+public class TestAddUser {
+
+	Logger Log = Logger.getLogger("TestGetList");
+	String url="https://clip-automation-practice.free.beeceptor.com/addUser";
+
+	@Test
+	public void postAddUser() {
+		RestAssured.baseURI = "http://172.16.130.31/cad-w";
+		RequestSpecification request = RestAssured.given();
+
+		JSONObject requestParams = new JSONObject();
+		requestParams.put("username", "AUTHGOQA07"); 
+		requestParams.put("idPerfil", "OPER911");
+		requestParams.put("queueTelefonia", "60911");
+		requestParams.put("password", "12345678");
+		requestParams.put("extension", "");
+
+		// Add a header stating the Request body is a JSON
+		//		request.header("Content-Type", "application/json");
+		// Add the Json to the body of the request
+		request.body(requestParams.toJSONString());
+
+
+		Response response = request.post("/iniciarSesion.action");
+		int statusCode = response.getStatusCode();
+
+		System.out.println("RESPUESTA DEL SERVICIO: "+response.body().asString().toString());
+		Assert.assertEquals(200, statusCode);
+	}
+
+}

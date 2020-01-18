@@ -1,0 +1,13 @@
+package com.clip.apiTest;
+
+import org.junit.Test;
+
+public class TestGetList {
+
+	@Test 
+	public void nuevaLlamada() {
+		System.out.println("");
+
+	}
+
+}

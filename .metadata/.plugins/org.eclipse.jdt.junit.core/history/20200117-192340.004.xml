@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestAddUser" project="clipTest" tests="2" started="2" failures="0" errors="0" ignored="1">
+  <testsuite name="com.clip.apiTest.TestAddUser" time="1.365">
+    <testcase name="submitForm" classname="com.clip.apiTest.TestAddUser" time="0.002" ignored="true"/>
+    <testcase name="postAddUser" classname="com.clip.apiTest.TestAddUser" time="1.363"/>
+  </testsuite>
+</testrun>

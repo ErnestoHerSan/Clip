@@ -1,0 +1,5 @@
+package com.clip.model;
+
+public class ApiResponseGetListMain {
+
+}

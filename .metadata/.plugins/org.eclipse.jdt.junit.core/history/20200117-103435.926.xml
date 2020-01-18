@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestGetList" project="clipTest" tests="2" started="2" failures="0" errors="0" ignored="1">
+  <testsuite name="com.clip.apiTest.TestGetList" time="1.484">
+    <testcase name="requestGetList" classname="com.clip.apiTest.TestGetList" time="0.002" ignored="true"/>
+    <testcase name="nuevaLlamada" classname="com.clip.apiTest.TestGetList" time="1.482"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,9 @@
+package com.clip.model;
+
+import java.util.List;
+
+public class ApiResponseGetListMain {
+
+	public List<ApiResponseGetList> Personas;
+	
+}

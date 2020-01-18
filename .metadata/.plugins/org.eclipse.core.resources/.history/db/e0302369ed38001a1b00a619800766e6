@@ -1,0 +1,73 @@
+package com.clip.webTest;
+
+import java.io.File;
+
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class testDynamicControls{
+
+	public ChromeDriver driver = new ChromeDriver();
+	WebDriverWait wait=new WebDriverWait(driver, 1000);
+	Boolean result=false;
+	
+	@BeforeClass
+	public static void setUp() {
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + File.separator + "driver" + File.separator + "chromedriver");
+	} 
+	
+	@Ignore
+	@Test
+	public void testCheckbox() {
+		 driver.get("http://the-internet.herokuapp.com/dynamic_controls");
+		 driver.manage().window().maximize();
+		 wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"content\"]/div[1]/h4[1]"))));
+		 driver.findElement(By.xpath("//*[@id=\"checkbox\"]/input")).click();
+		 
+		 driver.findElement(By.xpath("//*[@id=\"checkbox-example\"]/button")).click();
+		 
+		 wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\"checkbox\"]/input"))));
+		 driver.findElement(By.xpath("//*[@id=\"checkbox-example\"]/button")).click();
+		 
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkbox")));
+		 driver.findElement(By.id("checkbox")).click();
+		 
+		 if(driver.findElement(By.id("message")).getText().equals("It's back!"))
+			 result=true;
+		 
+		 Assert.assertEquals(true, result);		 
+	}
+	
+	@Test
+	public void testInputText() {
+		
+		 String name="Ernesto";
+		
+		 driver.get("http://the-internet.herokuapp.com/dynamic_controls");
+		 driver.manage().window().maximize();
+		
+		 wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"content\"]/div[1]/h4[1]"))));
+		 driver.findElement(By.xpath("//*[@id=\"input-example\"]/button")).click();
+
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"message\"]")));
+//		 wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\"loading\"]/img"))));
+		 driver.findElement(By.xpath("//*[@id=\"input-example\"]/input")).sendKeys(name);
+		 driver.findElement(By.xpath("//*[@id=\"input-example\"]/button")).click();
+		 
+		 wait.until(ExpectedConditions.attributeToBeNotEmpty(driver.findElement(By.xpath("//*[@id=\"input-example\"]/input")), "disabled"));
+		 
+		 driver.findElement(By.xpath("//*[@id=\"input-example\"]/button")).getText().toString();
+		 
+		 //FALTA VALIDAR EL CONTENIDO DEL NOMBRE
+	}
+	
+}
+
+

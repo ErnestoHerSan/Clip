@@ -1,0 +1,90 @@
+package com.clip.apiTest;
+
+import java.util.logging.Logger;
+/*
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
+*/
+public class TestGetList {
+
+	Logger Log = Logger.getLogger("TestGetList");
+	String url="https://clip-automation-practice.free.beeceptor.com";
+
+	@Ignore
+	@Test 
+	public void requestGetListCode() {
+		RestAssured.baseURI = url;
+		RequestSpecification httpRequest = RestAssured.given();
+		Response response = httpRequest.get("/getList");
+		int statusCode = response.getStatusCode();
+		Log.info("Código respuesta: "+statusCode);
+		Assert.assertEquals(200, statusCode);
+	}
+	
+	@Test 
+	public void requestGetListCodePerson() {
+		
+		RestAssured.given().get(url+"/getList").then().statusCode(200);
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+@Ignore
+	@Test
+	public void requestGetListDos() {
+		//RestAssured.baseURI = "https://clip-automation-practice.free.beeceptor.com/getList";
+
+		given().get("https://clip-automation-practice.free.beeceptor.com/getList").
+			then().statusCode(200);
+
+
+//		System.out.println("Response :" + response.asString());
+//		System.out.println("Status Code :" + response.getStatusCode());
+	}
+
+
+
+	/*	given().
+	parameters("firstName", "John", "lastName", "Doe").
+when().
+	post("/greetXML").
+then().
+	body("greeting.firstName", equalTo("John")).
+	body("greeting.lastName", equalTo("Doe"));
+	 */
+
+
+	/*	@Test
+	public void testGetAvailableBooks() {
+		get("https://api.bitso.com/v3/available_books/").then().body("success", equalTo(true));
+	}
+
+	@Test
+	public void getTickerByBook() {
+		given().param("book", "xrp_mxn").get("https://api.bitso.com/v3/ticker").then().statusCode(200);
+	}
+
+	@Test
+	public void validateGetTickerPrice() {
+		given().param("book", "xrp_mxn").get("https://api.bitso.com/v3/ticker").then().statusCode(200).and()
+				.body("payload.ask", notNullValue());
+	}
+	 */
+}

@@ -1,0 +1,93 @@
+package com.clip.apiTest;
+
+
+import java.awt.print.Book;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.logging.Logger;
+
+import javax.swing.text.html.parser.Entity;
+
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import com.clip.model.ApiResponseGetList;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+
+import io.restassured.RestAssured;
+import io.restassured.internal.http.ContentEncoding.Type;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class TestGetList {
+
+	Logger Log = Logger.getLogger("TestGetList");
+	String url="https://clip-automation-practice.free.beeceptor.com";
+
+/*	@Ignore
+	@Test 
+	public void requestGetListCode() {
+		RestAssured.baseURI = url;
+		RequestSpecification httpRequest = RestAssured.given();
+		Response response = httpRequest.get("/getList");
+		int statusCode = response.getStatusCode();
+		Log.info("Código respuesta: "+statusCode);
+		Assert.assertEquals(200, statusCode);
+	}
+	
+	@Test
+	public void requestGetListName() {
+		RestAssured.baseURI = url;
+		RequestSpecification httpRequest = RestAssured.given();
+		Response response = httpRequest.get("/getList");
+		
+		Gson gson = new Gson();
+		Type tipoListaEmpleados = new TypeToken<List<response>>(){}.getType();
+	
+	}
+	*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+    
+		RestAssured.baseURI = "https://clip-automation-practice.free.beeceptor.com";
+		RequestSpecification httpRequest = RestAssured.given();
+		Response response = httpRequest.get("/getList");
+		
+		String json=response.asString();
+		System.out.println(json);
+		
+        Gson gson = new Gson();
+        ApiResponseGetList[] persons = gson.fromJson(response.asString(),ApiResponseGetList[].class);
+
+        System.out.println(persons[0].name);
+        
+/*        for (ApiResponseGetList person : persons) {
+            System.out.println(person.name.get(0));
+        }
+*/
+	}
+
+}

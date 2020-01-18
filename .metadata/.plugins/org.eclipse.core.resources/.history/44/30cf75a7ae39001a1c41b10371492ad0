@@ -1,0 +1,67 @@
+package com.clip.webTest;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class TestDynamicControls{
+
+	public ChromeDriver driver = new ChromeDriver();
+	WebDriverWait wait=new WebDriverWait(driver, 1000);
+	Boolean result=false;
+
+	@Test
+	public void testCheckbox() throws InterruptedException {
+		driver.get("http://the-internet.herokuapp.com/dynamic_controls");
+		driver.manage().window().maximize();
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"content\"]/div[1]/h4[1]"))));
+		driver.findElement(By.xpath("//*[@id=\"checkbox\"]/input")).click();
+
+		driver.findElement(By.xpath("//*[@id=\"checkbox-example\"]/button")).click();
+
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\"checkbox\"]/input"))));
+		driver.findElement(By.xpath("//*[@id=\"checkbox-example\"]/button")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkbox")));
+		driver.findElement(By.id("checkbox")).click();
+
+		if(driver.findElement(By.id("message")).getText().equals("It's back!"))
+			result=true;
+
+		Thread.sleep(2000);
+		driver.close ();
+		Assert.assertEquals(true, result);	
+
+	}
+
+	@Test
+	public void testInputText() throws InterruptedException {
+
+		String name="Ernesto";
+
+		driver.get("http://the-internet.herokuapp.com/dynamic_controls");
+		driver.manage().window().maximize();
+
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"content\"]/div[1]/h4[1]"))));
+		driver.findElement(By.xpath("//*[@id=\"input-example\"]/button")).click();
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"message\"]")));
+		//		 wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\"loading\"]/img"))));
+		driver.findElement(By.xpath("//*[@id=\"input-example\"]/input")).sendKeys(name);
+		driver.findElement(By.xpath("//*[@id=\"input-example\"]/button")).click();
+
+		wait.until(ExpectedConditions.attributeToBeNotEmpty(driver.findElement(By.xpath("//*[@id=\"input-example\"]/input")), "disabled"));
+
+		driver.findElement(By.xpath("//*[@id=\"input-example\"]/button")).getText().toString();
+
+		Thread.sleep(2000);
+		driver.close ();
+		//FALTA VALIDAR EL CONTENIDO DEL NOMBRE
+	}
+
+}
+
+

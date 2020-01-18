@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="SuiteUiTest" project="clipTest" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="com.clip.main.SuiteUiTest" time="30.133">
+    <testsuite name="com.clip.webTest.TestDynamicControls" time="21.996">
+      <testcase name="testCheckbox" classname="com.clip.webTest.TestDynamicControls" time="11.061"/>
+      <testcase name="testInputText" classname="com.clip.webTest.TestDynamicControls" time="10.935"/>
+    </testsuite>
+    <testsuite name="com.clip.webTest.TestAdvancedControls" time="4.154">
+      <testcase name="testCheckbox" classname="com.clip.webTest.TestAdvancedControls" time="4.154"/>
+    </testsuite>
+    <testsuite name="com.clip.webTest.TestSelectors" time="3.983">
+      <testcase name="testCheckbox" classname="com.clip.webTest.TestSelectors" time="3.983"/>
+    </testsuite>
+  </testsuite>
+</testrun>

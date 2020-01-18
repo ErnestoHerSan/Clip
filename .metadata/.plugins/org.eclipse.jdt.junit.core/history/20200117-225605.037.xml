@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestDynamicControls" project="clipTest" tests="2" started="2" failures="0" errors="0" ignored="1">
+  <testsuite name="com.clip.webTest.TestDynamicControls" time="11.268">
+    <testcase name="testCheckbox" classname="com.clip.webTest.TestDynamicControls" time="0.651" ignored="true"/>
+    <testcase name="testInputText" classname="com.clip.webTest.TestDynamicControls" time="10.617"/>
+  </testsuite>
+</testrun>

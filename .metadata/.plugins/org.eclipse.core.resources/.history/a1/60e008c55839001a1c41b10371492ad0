@@ -1,0 +1,41 @@
+package com.clip.apiTest;
+
+import java.util.logging.Logger;
+
+import org.json.JSONObject;
+import org.junit.Assert;
+import org.junit.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class TestAddUser {
+
+	Logger Log = Logger.getLogger("TestGetList");
+	String url="https://clip-automation-practice.free.beeceptor.com/addUser";
+
+	@Test
+	public void postAddUser() {
+		RestAssured.baseURI = "http://172.16.130.31/cad-w";
+		RequestSpecification request = RestAssured.given();
+
+		JSONObject requestParams = new JSONObject();
+		requestParams.put("status", 100); 
+		requestParams.put("message", "User addded");
+
+		// Add a header stating the Request body is a JSON
+		// request.header("Content-Type", "application/json");
+		// Add the Json to the body of the request
+		request.body(requestParams.toString());
+
+
+		Response response = request.post("/iniciarSesion.action");
+		int statusCode = response.getStatusCode();
+		response.getBody().asString()
+
+		System.out.println("RESPUESTA DEL SERVICIO: "+response.body().asString().toString());
+		Assert.assertEquals(200, statusCode);
+	}
+
+}

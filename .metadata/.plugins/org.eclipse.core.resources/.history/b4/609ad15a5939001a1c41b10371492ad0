@@ -1,0 +1,49 @@
+package com.clip.apiTest;
+
+import java.util.logging.Logger;
+
+import org.json.JSONObject;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class TestAddUser {
+
+	Logger Log = Logger.getLogger("TestGetList");
+	String url="https://clip-automation-practice.free.beeceptor.com/addUser";
+
+    @Test
+    public void submitForm() {
+        RestAssured.baseURI = "https://www.example.com";
+        RestAssured.given().urlEncodingEnabled(true)
+            .param("username", "user@site.com")
+            .param("password", "Pas54321")
+            .header("Accept", ContentType.JSON.getAcceptHeader())
+            .post("/login")
+            .then().statusCode(200);
+    }
+	@Ignore
+	@Test
+	public void postAddUser() {
+		RestAssured.baseURI = url;
+		RequestSpecification request = RestAssured.given();
+
+		JSONObject requestParams = new JSONObject();
+		requestParams.put("status", 100); 
+		requestParams.put("message", "User addded");
+
+		request.body(requestParams.toString());
+
+		Response response = request.post("/iniciarSesion.action");
+		int statusCode = response.getStatusCode();
+
+		System.out.println("RESPUESTA DEL SERVICIO: "+response.body().asString().toString());
+		Assert.assertEquals(200, statusCode);
+	}
+
+}
